@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "TerritoryX Express API",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "node src/index.js"
+    "start": "node src/index.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",
