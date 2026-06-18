@@ -16,5 +16,7 @@
     "nodemailer": "^6.9.8",
     "pdfkit": "^0.14.0"
   },
-  "engines": { "node": ">=18.0.0" }
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
