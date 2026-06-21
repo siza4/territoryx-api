@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
       supabaseAdmin.from('territories').select('id, bid, brand, sudden'),
       supabaseAdmin.from('epochs').select('*').order('id', { ascending: false }).limit(1).single(),
       supabaseAdmin.from('credit_accounts').select('status, credit_limit'),
-      supabaseAdmin.from('invoices').select('status, total, data'),
+      supabaseAdmin.from('invoices').select('status, data'),
       supabaseAdmin.auth.admin.listUsers()
     ]);
     const territories = terRes.data || [];
@@ -17,8 +17,8 @@ router.get('/', async (req, res) => {
     const creditApps = caRes.data || [];
     const invoiceData = invRes.data || [];
     const users = userRes.data?.users || [];
-    const total = invoiceData.reduce((s, i) => s + (i.total || 0), 0);
-    const collected = invoiceData.filter(i => i.status === 'PAID').reduce((s, i) => s + (i.total || 0), 0);
+    const total = invoiceData.reduce((s, i) => s + (i.data?.total || 0), 0);
+    const collected = invoiceData.filter(i => i.status === 'PAID').reduce((s, i) => s + (i.data?.total || 0), 0);
     return res.json({
       epoch, totalTerritories: territories.length,
       suddenDeathCount: territories.filter(t => t.sudden).length,
